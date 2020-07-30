@@ -17,10 +17,15 @@ const Airlines = () => {
   })
 
   return (
-    <Fragment>
-      <div>This is the Airlines#index view for our app.</div>
-      <ul>{list}</ul>
-    </Fragment>
+    <div className="home">
+      <div className="header">
+        <h1>OpenFlights</h1>
+        <div className="subheader">Honest, unbiased airline reviews.</div>
+      </div>
+      <div className="grid">
+        <ul>{list}</ul>
+      </div>
+    </div>
   )
 }
 
