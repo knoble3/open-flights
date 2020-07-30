@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
+import Airline from './Airline'
 
 const Airlines = () => {
   const [airlines, setAirlines] = useState([])
@@ -12,8 +13,13 @@ const Airlines = () => {
     .catch( resp => console.log(resp) )
   }, [airlines.length])
 
-  const list = airlines.map( item => {
-    return (<li key={item.attributes.name}>(item.attributes.name)</li>)
+  const grid = airlines.map( item => {
+    return (
+      <Airline
+        key={item.attributes.name}
+        attributes={item.attributes}
+      />
+    )
   })
 
   return (
@@ -23,7 +29,7 @@ const Airlines = () => {
         <div className="subheader">Honest, unbiased airline reviews.</div>
       </div>
       <div className="grid">
-        <ul>{list}</ul>
+        {grid}
       </div>
     </div>
   )
