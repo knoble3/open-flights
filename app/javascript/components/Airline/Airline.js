@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
-  fisplay: grid;
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
 `
 const Column = styled.div`
