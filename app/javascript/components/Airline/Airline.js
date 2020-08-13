@@ -40,25 +40,52 @@ const Airline = (props) => {
     .catch( resp => console.log(resp) )
   }, [])
 
+  const handleChange = (e) => {
+    e.preventdefault()
+
+    setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventdefault()
+
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
+    const airline_id = airline.data.id
+    axios.post('/api/v1/reviews', {review, airline_id})
+    .then(resp => {
+
+    })
+    .catch(resp => {})
+  }
+
   return (
     <Wrapper>
-      <Column>
-        <Main>
-          {
-            loaded &&
-            <Header
+      {
+        loaded &&
+        <Fragment>
+          <Column>
+            <Main>
+                <Header
+                  attributes={airline.data.attributes}
+                  reviews={airline.included}
+                />
+              }
+              <div className="reviews"></div>
+            </Main>
+          </Column>
+          <Column>
+            <ReviewForm
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
               attributes={airline.data.attributes}
-              reviews={airline.included}
+              review={review}
             />
-          }
-          <div className="reviews"></div>
-        </Main>
-      </Column>
-      <Column>
-        <div className="review-form">[Reviews go here.]</div>
-      </Column>
+          </Column>
+        </Fragment>
+    }
     </Wrapper>
   )
-}
 
 export default Airline
