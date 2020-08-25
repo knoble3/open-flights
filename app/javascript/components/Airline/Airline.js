@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import Header from './Header'
 import styled from 'styled-components'
@@ -73,7 +73,6 @@ const Airline = (props) => {
                   attributes={airline.data.attributes}
                   reviews={airline.included}
                 />
-              }
               <div className="reviews"></div>
             </Main>
           </Column>
@@ -86,8 +85,9 @@ const Airline = (props) => {
             />
           </Column>
         </Fragment>
-    }
+      }
     </Wrapper>
   )
+}
 
 export default Airline
