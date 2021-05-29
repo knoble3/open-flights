@@ -26,7 +26,7 @@ const Main = styled.div`
 
 const Airline = (props) => {
   const [airline, setAirline] = useState({})
-  const [reviews, setReview] = useState({})
+  const [review, setReview] = useState({})
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {

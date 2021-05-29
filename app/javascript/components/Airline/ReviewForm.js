@@ -119,9 +119,9 @@ const ReviewForm = (props) => {
   })
 
   return (
-    <Wrapper>
+    <ReviewWrapper>
       <form onSubmit={props.handleSubmit}>
-        <Headline>Have an experience with {props.attributes.name} Share your review!</Headline>
+        <ReviewHeadline>Have an experience with {props.attributes.name} Share your review!</ReviewHeadline>
         <Field>
           <input onChange={props.handleChange} value={props.review.title} type="text" name="title" placeholder="Review Title"/>
        </Field>
@@ -138,7 +138,7 @@ const ReviewForm = (props) => {
        </Field>
         <SubmitBtn type="submit">Submit Your Review</SubmitBtn>
       </form>
-    </Wrapper>
+    </ReviewWrapper>
   )
 }
 
