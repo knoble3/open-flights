@@ -25,7 +25,7 @@ const totalOutOf = styled.div`
 
 const Header = (props) => {
   const {name, image_url, avg_score} = props.attributes
-  const total = props.reviews.length
+  const total = props.review.length
 
   return (
     <Wrapper>

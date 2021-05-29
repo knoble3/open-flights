@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import Header from './Header'
+import ReviewForm from './ReviewForm'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -62,6 +63,12 @@ const Airline = (props) => {
     .catch(resp => {})
   }
 
+  const setRating = (score, e) => {
+    e.preventdefault()
+
+    setReview({...review, score})
+  }
+
   return (
     <Wrapper>
       {
@@ -80,6 +87,7 @@ const Airline = (props) => {
             <ReviewForm
               handleChange={handleChange}
               handleSubmit={handleSubmit}
+              setRating={setRating}
               attributes={airline.data.attributes}
               review={review}
             />
