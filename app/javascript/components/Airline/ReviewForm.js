@@ -113,7 +113,7 @@ const ReviewForm = (props) => {
     return (
       <Fragment>
         <input type="radio" value={score} checked={props.review.score == score} name="rating" onChange={() => console.log('selected:', score)} id={`rating-${score}`}/>
-        <label onCLick={props.setRating.bind(this, score)}></label>
+        <label onClick={props.setRating.bind(this, score)}></label>
       </Fragment>
     )
   })
