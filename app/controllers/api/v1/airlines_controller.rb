@@ -3,6 +3,8 @@ module Api
     class AirlinesController < ApplicationController
       protect_from_forgery with: :null_session
 
+      before_action :fetch_airline, only: %i[show update destroy]
+
       def index
         airlines = Airline.all
 
@@ -10,8 +12,6 @@ module Api
       end
 
       def show
-        airline = Airline.find_by(slug: params[:slug])
-
         render json: AirlineSerializer.new(airline, options).serialized_json
       end
 
@@ -26,8 +26,6 @@ module Api
       end
 
       def update
-        airline = Airline.find_by(slug: params[:slug])
-
         if airline.update(airline_params)
           render json: AirlineSerializer.new(airline, options).serialized_json
         else
@@ -36,8 +34,6 @@ module Api
       end
 
       def destroy
-        airline = Airline.find_by(slug: params[:slug])
-
         if airline.destroy
           head :no_content
         else
@@ -46,6 +42,10 @@ module Api
       end
 
       private
+
+      def fetch_airline
+        airline = Airline.find_by(slug: params[:slug])
+      end
 
       def airline_params
         params.require(:airline).permit(:name, :image_url)
